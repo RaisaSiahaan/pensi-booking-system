@@ -469,7 +469,7 @@ async function bookSeat(){
 
     try{
 
-        const response = await fetch("https://script.google.com/macros/s/AKfycbzW98MHzLqYmrCe1UrBfOiXvr4nLDi2T4dmhQzEWJm7gOR6B9Fgh47fH2na9PamQ1h2/exec",{
+        const response = await fetch("https://script.google.com/macros/s/AKfycbwVYE6Kjym7mnPm9125ao-lrFs5FCJUmxfDNyl-n5ThGzaw6p-bG2gc_TG7uNdYm3R16A/exec",{
             method:"POST",
             body:JSON.stringify(data)
         });
@@ -508,7 +508,7 @@ async function loadBookedSeats(){
 
     try{
 
-        const response = await fetch("https://script.google.com/macros/s/AKfycbzW98MHzLqYmrCe1UrBfOiXvr4nLDi2T4dmhQzEWJm7gOR6B9Fgh47fH2na9PamQ1h2/exec");
+        const response = await fetch("https://script.google.com/macros/s/AKfycbwVYE6Kjym7mnPm9125ao-lrFs5FCJUmxfDNyl-n5ThGzaw6p-bG2gc_TG7uNdYm3R16A/exec");
 
         const bookedSeats = await response.json();
 
@@ -551,7 +551,7 @@ async function searchTicket(){
     try{
 
         const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzW98MHzLqYmrCe1UrBfOiXvr4nLDi2T4dmhQzEWJm7gOR6B9Fgh47fH2na9PamQ1h2/exec" +
+        "https://script.google.com/macros/s/AKfycbwVYE6Kjym7mnPm9125ao-lrFs5FCJUmxfDNyl-n5ThGzaw6p-bG2gc_TG7uNdYm3R16A/exec" +
         "?search=" +
         encodeURIComponent(keyword)
         );
