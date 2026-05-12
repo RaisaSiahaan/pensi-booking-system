@@ -404,13 +404,19 @@ function createSection(parent, prefix, total, row){
     const sectionDiv = document.createElement("div");
     sectionDiv.className = "section";
 
+    let prefixMap = {
+        L: "A",
+        C: "B",
+        R: "C"
+    };
+
     for(let i=1; i<=total; i++){
 
         const seat = document.createElement("button");
 
         const rowLetter = String.fromCharCode(64+row);
 
-        const seatCode = `${rowLetter}-${prefix}${i}`;
+        const seatCode = `${rowLetter}-${prefixMap[prefix]}${i}`;
 
         seat.className = "seat";
         seat.dataset.code = seatCode;
