@@ -14,18 +14,89 @@
     box-sizing:border-box;
 }
 
-body{
-    font-family:Arial,sans-serif;
-    background:#eef2f7;
-    padding:20px;
-    color:#333;
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background-image:
+    url("IPEKA.png");
+
+    background-size:90px;
+
+    background-repeat:repeat;
+
+    opacity:0.05;
+
+    transform:rotate(-25deg) scale(1.2);
+
+    z-index:-1;
+}
+.top-logo{
+    position:fixed;
+    top:15px;
+    left:15px;
+    z-index:999;
 }
 
+.top-logo img{
+    box-shadow:
+    0 0 20px rgba(52,152,219,0.4);
+}
+}
+
+    background:white;
+
+    padding:8px;
+
+    border-radius:14px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,0.15);
+}
+@media(max-width:768px){
+
+.top-logo img{
+    width:50px;
+    padding:6px;
+}
+
+}
 h1{
     text-align:center;
     margin-bottom:15px;
 }
+.email-notice{
 
+    margin-top:18px;
+
+    background:linear-gradient(
+        135deg,
+        #fff8e1,
+        #fff3cd
+    );
+
+    border-left:5px solid #f39c12;
+
+    color:#5d4037;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    font-size:14px;
+
+    line-height:1.8;
+
+    box-shadow:
+    0 4px 12px rgba(0,0,0,0.06);
+
+}AAAAA
 .screen{
     max-width:900px;
     margin:0 auto 30px;
@@ -322,7 +393,17 @@ Booking Seat
 </button>
 
 <p id="status"></p>
+<p id="status"></p>
 
+<div class="email-notice">
+
+📩 E-ticket akan dikirim ke email Anda.<br>
+
+Periksa juga folder
+<b>Spam / Promotions / Junk</b>
+jika email belum masuk.
+
+</div>
 </div>
 
 </div>
@@ -353,7 +434,7 @@ Cari Ticket
 <script>
 
 const APPS_SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycby5_wasKXC7kVfbaSyQtyi5Zsxun-7vCMX-rPltEy9BqMbvlsKyOvSeDtzjL-BgqaV_fw/exec";
+"https://script.google.com/macros/s/AKfycbzfxxvJUBLyZms-yqfiWxFdJod6a2PrkERwErlG0t7BSvj9OrLCuwmy6AHwIDlmYy1U/exec";
 
 const seatArea = document.getElementById("seatArea");
 
@@ -365,8 +446,7 @@ const layout = {
     right:4
 };
 
-let selectedSeatElement = null;
-let selectedSeatCode = null;
+let selectedSeats = [];
 
 function generateSeats(){
 
@@ -434,70 +514,125 @@ function selectSeat(element, code){
 
     if(element.classList.contains("booked")) return;
 
-    document.querySelectorAll(".seat").forEach(seat=>{
-        seat.classList.remove("selected");
-    });
+    // kalau sudah dipilih → batal pilih
+    if(element.classList.contains("selected")){
 
-    element.classList.add("selected");
+        element.classList.remove("selected");
 
-    selectedSeatElement = element;
-    selectedSeatCode = code;
+        selectedSeats =
+        selectedSeats.filter(seat => seat !== code);
 
-    document.getElementById("seatCode").value = code;
+    }else{
+
+        element.classList.add("selected");
+
+        selectedSeats.push(code);
+
+    }
+
+    document.getElementById("seatCode").value =
+    selectedSeats.join(", ");
+
 }
 
 async function bookSeat(){
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
+    const name =
+    document.getElementById("name")
+    .value
+    .trim();
 
-    if(!name || !email || !selectedSeatCode){
+    const email =
+    document.getElementById("email")
+    .value
+    .trim();
 
-        alert("Lengkapi data dan pilih seat!");
+    if(
+        !name ||
+        !email ||
+        selectedSeats.length === 0
+    ){
+
+        alert(
+        "Lengkapi data dan pilih seat!"
+        );
+
         return;
+
     }
 
     const data = {
-    action:"seat",
-    name:name,
-    email:email,
-    seat:selectedSeatCode
-};
+        action:"seat",
+        name:name,
+        email:email,
+        seat:selectedSeats
+    };
 
-    document.getElementById("status").innerText =
+    document.getElementById("status")
+    .innerText =
     "Mengirim booking...";
 
     try{
 
-        const response = await fetch("https://script.google.com/macros/s/AKfycby5_wasKXC7kVfbaSyQtyi5Zsxun-7vCMX-rPltEy9BqMbvlsKyOvSeDtzjL-BgqaV_fw/exec",{
+        const response =
+        await fetch(
+        "https://script.google.com/macros/s/AKfycbzfxxvJUBLyZms-yqfiWxFdJod6a2PrkERwErlG0t7BSvj9OrLCuwmy6AHwIDlmYy1U/exec",
+        {
             method:"POST",
             body:JSON.stringify(data)
         });
 
-        const result = await response.json();
+        const result =
+        await response.json();
 
-        document.getElementById("status").innerText =
+        document.getElementById("status")
+        .innerText =
         result.message;
 
         if(!result.success){
             return;
         }
 
-        selectedSeatElement.classList.remove("selected");
-        selectedSeatElement.classList.add("booked");
+        // ubah jadi booked
+        selectedSeats.forEach(code=>{
 
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("seatCode").value = "";
+            const seat =
+            document.querySelector(
+            `[data-code="${code}"]`
+            );
 
-        selectedSeatElement = null;
-        selectedSeatCode = null;
+            if(seat){
+
+                seat.classList.remove(
+                "selected"
+                );
+
+                seat.classList.add(
+                "booked"
+                );
+
+            }
+
+        });
+
+        // reset form
+        document.getElementById("name")
+        .value = "";
+
+        document.getElementById("email")
+        .value = "";
+
+        document.getElementById("seatCode")
+        .value = "";
+
+        selectedSeats = [];
 
     }catch(err){
 
         console.log(err);
 
-        document.getElementById("status").innerText =
+        document.getElementById("status")
+        .innerText =
         "Gagal booking";
 
     }
@@ -508,19 +643,27 @@ async function loadBookedSeats(){
 
     try{
 
-        const response = await fetch("https://script.google.com/macros/s/AKfycby5_wasKXC7kVfbaSyQtyi5Zsxun-7vCMX-rPltEy9BqMbvlsKyOvSeDtzjL-BgqaV_fw/exec");
+        const response =
+        await fetch("https://script.google.com/macros/s/AKfycbz4a8hzcGhH5G0Lf3J02ladZJA2StW_uPhSXTbK8wcWsXpzIlWPWxoyifWFHwoQuV3ATg/exec");
 
-        const bookedSeats = await response.json();
+        const bookedSeats =
+        await response.json();
 
         bookedSeats.forEach(code=>{
 
-            const seat = document.querySelector(
-                `[data-code="${code}"]`
+            const cleanCode =
+            code.toString().trim();
+
+            const seat =
+            document.querySelector(
+            `[data-code="${cleanCode}"]`
             );
 
             if(seat){
 
-                seat.classList.add("booked");
+                seat.classList.add(
+                "booked"
+                );
 
             }
 
@@ -537,38 +680,66 @@ async function loadBookedSeats(){
 async function searchTicket(){
 
     const keyword =
-    document.getElementById("searchInput")
+    document
+    .getElementById("searchInput")
     .value
     .trim();
 
     if(!keyword){
 
-        alert("Masukkan nama / booking ID / seat");
+        alert(
+        "Masukkan nama / booking ID / seat"
+        );
+
         return;
 
     }
 
     try{
 
-        const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbwVYE6Kjym7mnPm9125ao-lrFs5FCJUmxfDNyl-n5ThGzaw6p-bG2gc_TG7uNdYm3R16A/exec" +
-        "?search=" +
-        encodeURIComponent(keyword)
+        const response =
+        await fetch(
+
+            "https://script.google.com/macros/s/AKfycbz4a8hzcGhH5G0Lf3J02ladZJA2StW_uPhSXTbK8wcWsXpzIlWPWxoyifWFHwoQuV3ATg/exec" +
+
+            "?search=" +
+
+            encodeURIComponent(keyword) +
+
+            "&t=" +
+
+            Date.now()
+
         );
 
-        const result = await response.json();
+        // DEBUG
+        console.log(response);
+
+        const result =
+        await response.json();
+
+        console.log(result);
 
         const ticketResult =
-        document.getElementById("ticketResult");
+        document.getElementById(
+        "ticketResult"
+        );
 
         ticketResult.innerHTML = "";
 
-        if(result.length === 0){
+        if(
+            !Array.isArray(result) ||
+            result.length === 0
+        ){
 
             ticketResult.innerHTML = `
+
             <div class="ticket-card">
+
                 Ticket tidak ditemukan
+
             </div>
+
             `;
 
             return;
@@ -617,9 +788,14 @@ async function searchTicket(){
 
     }catch(err){
 
-        console.log(err);
+        console.log(
+        "SEARCH ERROR:",
+        err
+        );
 
-        alert("Gagal mengambil ticket");
+        alert(
+        "Gagal mengambil ticket"
+        );
 
     }
 
