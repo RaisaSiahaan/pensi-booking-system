@@ -353,7 +353,7 @@ Cari Ticket
 <script>
 
 const APPS_SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbwVYE6Kjym7mnPm9125ao-lrFs5FCJUmxfDNyl-n5ThGzaw6p-bG2gc_TG7uNdYm3R16A/exec";
+"https://script.google.com/macros/s/AKfycby5_wasKXC7kVfbaSyQtyi5Zsxun-7vCMX-rPltEy9BqMbvlsKyOvSeDtzjL-BgqaV_fw/exec";
 
 const seatArea = document.getElementById("seatArea");
 
@@ -469,7 +469,7 @@ async function bookSeat(){
 
     try{
 
-        const response = await fetch("https://script.google.com/macros/s/AKfycbwVYE6Kjym7mnPm9125ao-lrFs5FCJUmxfDNyl-n5ThGzaw6p-bG2gc_TG7uNdYm3R16A/exec",{
+        const response = await fetch("https://script.google.com/macros/s/AKfycby5_wasKXC7kVfbaSyQtyi5Zsxun-7vCMX-rPltEy9BqMbvlsKyOvSeDtzjL-BgqaV_fw/exec",{
             method:"POST",
             body:JSON.stringify(data)
         });
@@ -508,7 +508,7 @@ async function loadBookedSeats(){
 
     try{
 
-        const response = await fetch("https://script.google.com/macros/s/AKfycbwVYE6Kjym7mnPm9125ao-lrFs5FCJUmxfDNyl-n5ThGzaw6p-bG2gc_TG7uNdYm3R16A/exec");
+        const response = await fetch("https://script.google.com/macros/s/AKfycby5_wasKXC7kVfbaSyQtyi5Zsxun-7vCMX-rPltEy9BqMbvlsKyOvSeDtzjL-BgqaV_fw/exec");
 
         const bookedSeats = await response.json();
 
