@@ -9,10 +9,10 @@
 <style>
 
 :root{
-    --primary:#6c5ce7;
-    --secondary:#00b894;
-    --danger:#e74c3c;
-    --dark:#1e293b;
+    --primary:#F4B400;
+    --secondary:white;
+    --danger:#F4B400;
+    --dark:#F4B400;
     --light:#f8fafc;
     --card:rgba(255,255,255,0.85);
     --shadow:0 10px 30px rgba(0,0,0,0.08);
@@ -30,7 +30,7 @@ body{
     background:
     linear-gradient(135deg,#eef2ff,#f8fafc);
     padding:25px;
-    color:#333;
+    color:#F4B400;
     min-height:100vh;
 }
 
@@ -85,7 +85,7 @@ body{
 .food-grid{
     display:grid;
     grid-template-columns:
-    repeat(auto-fit,minmax(260px,1fr));
+    repeat(auto-fit,minmax(300px,1fr));
     gap:25px;
 }
 
@@ -94,7 +94,7 @@ body{
 .food-card{
     overflow:hidden;
     background:white;
-    border-radius:22px;
+    border-radius:12px;
     transition:0.3s;
     box-shadow:0 5px 15px rgba(0,0,0,0.05);
 }
@@ -149,7 +149,7 @@ button{
     linear-gradient(
     135deg,
     var(--primary),
-    #8e7dff
+    #1F3C88
     );
     color:white;
     font-size:15px;
@@ -231,7 +231,7 @@ button:hover{
 .food-name{
   font-size:14px;
   font-weight:bold;
-  margin:8px 0;
+  margin:5px 0;
 }
 
 .food-price{
@@ -257,8 +257,8 @@ button:hover{
 .cart-item{
   display:flex;
   justify-content:space-between;
-  font-size:14px;
-  margin:6px 0;
+  font-size:15px;
+  margin:3px 0;
   padding:6px;
   border-bottom:1px solid #eee;
 }
@@ -338,7 +338,7 @@ input{
     border-radius:15px;
     padding:20px;
     margin-top:15px;
-    background:#f8fbff;
+    background:#F4B400;
 }
 
 .ticket-title{
@@ -372,6 +372,27 @@ input{
 }
 
 }
+.topping-group{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:6px 20px; /* row gap, column gap */
+    text-align:left;
+}
+.topping-option{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:6px 0;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.topping-option input{
+    width:16px;
+    height:16px;
+    margin:0;
+}
+
 @media(max-width:1100px){
 
 .container{
@@ -384,7 +405,7 @@ input{
 }
 
 .food-grid{
-    grid-template-columns:1fr;
+    grid-template-columns:3fr;
 }
 
 .page-header h1{
@@ -485,7 +506,6 @@ Fresh milk + strawberry milk +pecan + cream + cincau + strawberry
 <div class="food-price">
 Rp 0,-
 </div>
-
 <button onclick="addToCart('Fresh milk + strawberry milk +pecan + cream + cincau + strawberry',35000)">
 Tambah Pesanan
 </button>
@@ -537,7 +557,7 @@ ice cream with cincau + toppings
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br>
 <button onclick="addToCart('ice cream with cincau + toppings',35000)">
 Tambah Pesanan
 </button>
@@ -563,7 +583,7 @@ Thaitea with cincau
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br><br>
 <button onclick="addToCart('Thaitea with cincau',35000)">
 Tambah Pesanan
 </button>
@@ -602,7 +622,7 @@ Tambah Pesanan
 
 <div class="food-card">
 
-<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
+<img src="cincauobses.jpeg">
 
 <div class="food-info">
 
@@ -613,10 +633,10 @@ Milk tea cincau
 </p>
 
 <div class="food-price">
-Rp 0,-
+Rp 15.000,-
 </div>
-
-<button onclick="addToCart('Milk Tea Cincau',35000)">
+<br><br>
+<button onclick="addToCart('Milk Tea Cincau',15000)">
 Tambah Pesanan
 </button>
 
@@ -641,7 +661,7 @@ Chocolate banana cincau
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br>
 <button onclick="addToCart('Chocolate banana cincau',35000)">
 Tambah Pesanan
 </button>
@@ -679,7 +699,7 @@ Tambah Pesanan
 
 <div class="food-card">
 
-<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
+<img src="jelly.jpg">
 
 <div class="food-info">
 
@@ -730,48 +750,61 @@ Tambah Pesanan
 
 <div class="food-card">
 
-<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
+<img src="Cincauholic.png">
 
 <div class="food-info">
 
 <h3>Cincauholic</h3>
+<p>Volcano Oreo</p>
 
-<p>
-Cincau Oreo
-</p>
+<!-- TOPPING -->
+<div style="text-align:left;margin:10px 0">
+Extra topping | 5000
+  <label class="topping-option">
+    <input type="checkbox" class="topping-Cincauholic" value="5000">
+    Original
+  </label>
 
-<div class="food-price">
-Rp 0,-
-</div>
+  <label class="topping-option">
+    <input type="checkbox" class="topping-Cincauholic" value="5000">
+    Cincau Oreo
+  </label>
 
-<button onclick="addToCart('Cincau Oreo',35000)">
-Tambah Pesanan
+  </div>
+<button onclick="addCincauholicToCart()">
+  Tambah Pesanan
 </button>
 
 </div>
 
 </div>
-
 <!-- CARD -->
 
 <div class="food-card">
 
-<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
+<img src="CincauManias.jpeg">
 
 <div class="food-info">
 
 <h3>CincauMania</h3>
+<p>MiloChao</p>
 
-<p>
-Cincau Milo
-</p>
+<!-- TOPPING -->
+<div style="text-align:left;margin:10px 0">
+Size
+  <label class="topping-option">
+    <input type="checkbox" class="topping-CincauMania" value="12000">
+    150ml | 12.000,-
+  </label>
 
-<div class="food-price">
-Rp 0,-
-</div>
+  <label class="topping-option">
+    <input type="checkbox" class="topping-CincauMania" value="16000">
+    12oz | 16.000,-
+  </label>
 
-<button onclick="addToCart('Cincau Milo',35000)">
-Tambah Pesanan
+  </div>
+<button onclick="addCincauManiaToCart()">
+  Tambah Pesanan
 </button>
 
 </div>
@@ -846,7 +879,7 @@ Spud Potato
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br><br><br>
 <button onclick="addToCart('Pizza Slice',35000)">
 Tambah Pesanan
 </button>
@@ -872,7 +905,7 @@ Potato Pancake
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br><br><br>
 <button onclick="addToCart('Potato Pancake',35000)">
 Tambah Pesanan
 </button>
@@ -924,7 +957,7 @@ Tambah Pesanan
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br><br><br>
 <button onclick="addToCart('Dubai Potato Mochi',35000)">
 Tambah Pesanan
 </button>
@@ -950,7 +983,7 @@ Tambah Pesanan
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br><br><br>
 <button onclick="addToCart('Potato Balls with Mozzarella Cheese',35000)">
 Tambah Pesanan
 </button>
@@ -976,7 +1009,7 @@ Tambah Pesanan
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br><br><br>
 <button onclick="addToCart('Mashed Potato with Mushroom Sauce, Sausage Rendang, and Dino Nuggets',35000)">
 Tambah Pesanan
 </button>
@@ -1002,7 +1035,7 @@ Potato Cheese Bread
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br><br><br>
 <button onclick="addToCart('Potato Cheese Bread',35000)">
 Tambah Pesanan
 </button>
@@ -1080,7 +1113,7 @@ Loaded Fries + Bumbu Nusantara
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br><br>
 <button onclick="addToCart('Pizza Slice',35000)">
 Tambah Pesanan
 </button>
@@ -1106,7 +1139,7 @@ Cimol Kentang Rasa BBQ, Keju, & Jagung Bakar
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br>
 <button onclick="addToCart('Cimol Kentang Rasa BBQ, Keju, & Jagung Bakar',35000)">
 Tambah Pesanan
 </button>
@@ -1158,7 +1191,7 @@ Tambah Pesanan
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br><br><br>
 <button onclick="addToCart('Pizza Slice',35000)">
 Tambah Pesanan
 </button>
@@ -1184,7 +1217,7 @@ Bolomash
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br><br><br>
 <button onclick="addToCart('Bolomash',35000)">
 Tambah Pesanan
 </button>
@@ -1262,7 +1295,7 @@ Rendang Bitezz
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br><br><br>
 <button onclick="addToCart('Rendang Bitezz',35000)">
 Tambah Pesanan
 </button>
@@ -1288,7 +1321,7 @@ Donat Kentang
 <div class="food-price">
 Rp 0,-
 </div>
-
+<br><br><br>
 <button onclick="addToCart('Pizza Slice',35000)">
 Tambah Pesanan
 </button>
@@ -1315,7 +1348,7 @@ Loaded Fries with Chicken Balado (Fry Baboom)
 Rp 0,-
 </div>
 
-<button onclick="addToCart('Loaded Fries with Chicken Balado (Fry Baboom)',35000)">
+<button onclick="addToCart('Fry Baboom',35000)">
 Tambah Pesanan
 </button>
 
@@ -1338,9 +1371,9 @@ Dodol Kandangan
 </p>
 
 <div class="food-price">
-Rp 0,-
+Rp 10.000,-
 </div>
-
+<br><br><br>
 <button onclick="addToCart('Dodol Kandangan',10000)">
 Tambah Pesanan
 </button>
@@ -1364,7 +1397,7 @@ Tambah Pesanan
 </p>
 
 <div class="food-price">
-Rp 0,-
+Rp 15.000,-
 </div>
 
 <button onclick="addToCart('Kue Rangai',15000)">
@@ -1390,7 +1423,7 @@ Kue Cincin
 </p>
 
 <div class="food-price">
-Rp 10000,-
+Rp 10.000,-
 </div>
 
 <button onclick="addToCart('Kue Cincin',10000)">
@@ -1400,27 +1433,33 @@ Tambah Pesanan
 </div>
 
 </div>
-
 <!-- CARD -->
 
 <div class="food-card">
 
-<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
+<img src="amplang.png">
 
 <div class="food-info">
 
 <h3>Crunch Pang</h3>
-
-<p>
-Kerupuk Amplang
-</p>
+<p>Kerupuk Amplang</p>
 
 <div class="food-price">
-Rp 0,-
+Original Rp 12.000,-
+
 </div>
 
-<button onclick="addToCart('Kerupuk Amplang',0,-)">
-Tambah Pesanan
+<!-- TOPPING -->
+<div style="text-align:left;margin:10px 0">
+Extra topping | 2000
+  <label class="topping-option">
+    <input type="checkbox" class="topping-amplang" value="2000">
+    Extra Sambal
+  </label>
+
+</div>
+<button onclick="addamplangToCart()">
+  Tambah Pesanan
 </button>
 
 </div>
@@ -1442,9 +1481,9 @@ Kue Bangkit
 </p>
 
 <div class="food-price">
-Rp 0,-
+Rp 18.500,-
 </div>
-
+<br><br><br>
 <button onclick="addToCart('Kue Bangkit',18500)">
 Tambah Pesanan
 </button>
@@ -1462,17 +1501,34 @@ Tambah Pesanan
 <div class="food-info">
 
 <h3>Kelompok 1</h3>
-
-<p>
-Kue Keminting
-</p>
+<p>Kue Keminting</p>
 
 <div class="food-price">
-Rp 0,-
+Original Rp 19.990,-
+
 </div>
 
-<button onclick="addToCart('Kue Keminting',19990)">
-Tambah Pesanan
+<!-- TOPPING -->
+<div style="text-align:left;margin:10px 0">
+Extra topping | 5000
+  <label class="topping-option">
+    <input type="checkbox" class="topping-Keminting" value="5000">
+    Matcha
+  </label>
+
+  <label class="topping-option">
+    <input type="checkbox" class="topping-Keminting" value="5000">
+    Milo
+  </label>
+
+  <label class="topping-option">
+    <input type="checkbox" class="topping-Keminting" value="5000">
+    Coklat
+  </label>
+
+</div>
+<button onclick="addKemintingToCart()">
+  Tambah Pesanan
 </button>
 
 </div>
@@ -1488,28 +1544,64 @@ Tambah Pesanan
 <div class="food-info">
 
 <h3>Kelompok 2</h3>
+<p>Keripik Pisang</p>
 
-<p>
-Keripik Pisang
-</p>
+<!-- TOPPING -->
+<div class="topping-group">
 
-<div class="food-price">
-Rp 0,-
+  <label class="topping-option">
+    <input type="checkbox" class="topping-Keripik" value="15000">
+    BBQ
+  </label>
+
+  <label class="topping-option">
+    <input type="checkbox" class="topping-Keripik" value="15000">
+    Balado
+  </label>
+
+  <label class="topping-option">
+    <input type="checkbox" class="topping-Keripik" value="15000">
+    Milo
+  </label>
+
+  <label class="topping-option">
+    <input type="checkbox" class="topping-Keripik" value="15000">
+    Coklat
+  </label>
+  
+  <label class="topping-option">
+    <input type="checkbox" class="topping-Keripik" value="15000">
+    Keju
+  </label>
+
+	<label class="topping-option">
+    <input type="checkbox" class="topping-Keripik" value="15000">
+    Manis
+  </label>
+  
+  <label class="topping-option">
+    <input type="checkbox" class="topping-Keripik" value="15000">
+    Mactha
+  </label>
+  
+  <label class="topping-option">
+    <input type="checkbox" class="topping-Keripik" value="15000">
+    Rumput Laut
+  </label>
 </div>
 
-<button onclick="addToCart('Keripik Pisang',15000)">
-Tambah Pesanan
+<button onclick="addKeripikToCart()">
+  Tambah Pesanan
 </button>
 
 </div>
-
 </div>
 
 <!-- CARD -->
 
 <div class="food-card">
 
-<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
+<img src="JARUK.jpg">
 
 <div class="food-info">
 
@@ -1520,9 +1612,9 @@ Kacang Jaruk
 </p>
 
 <div class="food-price">
-Rp 0,-
+Rp 15.000,-
 </div>
-
+<br><br><br>
 <button onclick="addToCart('Kacang Jaruk',15000)">
 Tambah Pesanan
 </button>
@@ -1540,17 +1632,30 @@ Tambah Pesanan
 <div class="food-info">
 
 <h3>Kelompok 4</h3>
+<p>Kue Gapit</p>
 
-<p>
-Kue gapit
-</p>
+<!-- TOPPING -->
+<div style="text-align:left;margin:10px 0">
 
-<div class="food-price">
-Rp 0.-
+  <label class="topping-option">
+    <input type="checkbox" class="topping-gapit" value="15000">
+    Coklat
+  </label>
+
+  <label class="topping-option">
+    <input type="checkbox" class="topping-gapit" value="15000">
+    Strawberry
+  </label>
+
+  <label class="topping-option">
+    <input type="checkbox" class="topping-gapit" value="15000">
+    Pistachio
+  </label>
+
 </div>
-
-<button onclick="addToCart('Kue gapit',10000)">
-Tambah Pesanan
+<br>
+<button onclick="addGapitToCart()">
+  Tambah Pesanan
 </button>
 
 </div>
@@ -1572,7 +1677,7 @@ Kue Mantou
 </p>
 
 <div class="food-price">
-Rp 0,-
+Rp 10.000,-
 </div>
 
 <button onclick="addToCart('Kue Mantou',10000)">
@@ -1696,6 +1801,216 @@ function addToCart(name,price){
     cart.push({
         name:name,
         price:price
+    });
+
+    renderCart();
+}
+
+function addVariantToCart(name, selectId){
+
+    const price = parseInt(
+        document.getElementById(selectId).value
+    );
+
+    cart.push({
+        name: name,
+        price: price
+    });
+
+    renderCart();
+}
+
+function addJellyToCart(){
+
+    const basePrice = 19990;
+
+    const checkboxes = document.querySelectorAll(".topping-Jelly");
+
+    let toppingCount = 0;
+    let toppings = [];
+
+    checkboxes.forEach(cb => {
+        if(cb.checked){
+            toppingCount++;
+            toppings.push(cb.parentElement.innerText.trim());
+        }
+    });
+
+    const totalPrice = basePrice + (toppingCount * 5000);
+
+    const name = "Kue Jelly (" + toppings.join(", ") + ")";
+
+    cart.push({
+        name: name,
+        price: totalPrice
+    });
+
+    renderCart();
+}
+
+function addKemintingToCart(){
+
+    const basePrice = 19990;
+
+    const checkboxes = document.querySelectorAll(".topping-Keminting");
+
+    let toppingCount = 0;
+    let toppings = [];
+
+    checkboxes.forEach(cb => {
+        if(cb.checked){
+            toppingCount++;
+            toppings.push(cb.parentElement.innerText.trim());
+        }
+    });
+
+    const totalPrice = basePrice + (toppingCount * 5000);
+
+    const name = "Kue Keminting (" + toppings.join(", ") + ")";
+
+    cart.push({
+        name: name,
+        price: totalPrice
+    });
+
+    renderCart();
+}
+
+function addCincauManiaToCart(){
+
+    const basePrice = 19990;
+
+    const checkboxes = document.querySelectorAll(".topping-CincauMania");
+
+    let toppingCount = 0;
+    let toppings = [];
+
+    checkboxes.forEach(cb => {
+        if(cb.checked){
+            toppingCount++;
+            toppings.push(cb.parentElement.innerText.trim());
+        }
+    });
+
+    const totalPrice = basePrice + (toppingCount * 5000);
+
+    const name = "Kue CincauMania (" + toppings.join(", ") + ")";
+
+    cart.push({
+        name: name,
+        price: totalPrice
+    });
+
+    renderCart();
+}
+
+function addCincauholicToCart(){
+
+    const basePrice = 13000;
+
+    const checkboxes = document.querySelectorAll(".topping-Cincauholic");
+
+    let toppingCount = 0;
+    let toppings = [];
+
+    checkboxes.forEach(cb => {
+        if(cb.checked){
+            toppingCount++;
+            toppings.push(cb.parentElement.innerText.trim());
+        }
+    });
+
+    const totalPrice = basePrice + (toppingCount * 2000);
+
+    const name = "Kue Cincauholic (" + toppings.join(", ") + ")";
+
+    cart.push({
+        name: name,
+        price: totalPrice
+    });
+
+    renderCart();
+}
+
+function addamplangToCart(){
+
+    const basePrice = 13000;
+
+    const checkboxes = document.querySelectorAll(".topping-amplang");
+
+    let toppingCount = 0;
+    let toppings = [];
+
+    checkboxes.forEach(cb => {
+        if(cb.checked){
+            toppingCount++;
+            toppings.push(cb.parentElement.innerText.trim());
+        }
+    });
+
+    const totalPrice = basePrice + (toppingCount * 2000);
+
+    const name = "Kerupuk Amplang (" + toppings.join(", ") + ")";
+
+    cart.push({
+        name: name,
+        price: totalPrice
+    });
+
+    renderCart();
+}
+
+function addKeripikToCart(){
+
+    const basePrice = 15000;
+
+    const checkboxes = document.querySelectorAll(".topping-Keripik");
+
+    let toppingCount = 0;
+    let toppings = [];
+
+    checkboxes.forEach(cb => {
+        if(cb.checked){
+            toppingCount++;
+            toppings.push(cb.parentElement.innerText.trim());
+        }
+    });
+
+    const totalPrice = basePrice + (toppingCount * 5000);
+
+    const name = "Keripik Pisang (" + toppings.join(", ") + ")";
+
+    cart.push({
+        name: name,
+        price: totalPrice
+    });
+
+    renderCart();
+}
+
+function addGapitToCart(){
+
+    const basePrice = 19990;
+
+    const checkboxes = document.querySelectorAll(".topping-Gapit");
+
+    let toppingCount = 0;
+    let toppings = [];
+
+    checkboxes.forEach(cb => {
+        if(cb.checked){
+            toppingCount++;
+            toppings.push(cb.parentElement.innerText.trim());
+        }
+    });
+
+    const totalPrice = basePrice + (toppingCount * 5000);
+
+    const name = "Kue Gapit (" + toppings.join(", ") + ")";
+
+    cart.push({
+        name: name,
+        price: totalPrice
     });
 
     renderCart();
